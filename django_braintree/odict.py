@@ -226,7 +226,7 @@ class OrderedDict(dict):
         return reversed(self._keys)
 
     def __eq__(self, other):
-        if isinstance(other, odict):
+        if isinstance(other, self.__class__):
             if not dict.__eq__(self, other):
                 return False
             return self.items() == other.items()
@@ -236,7 +236,7 @@ class OrderedDict(dict):
         return not self.__eq__(other)
 
     def __cmp__(self, other):
-        if isinstance(other, odict):
+        if isinstance(other, self.__class__):
             return cmp(self.items(), other.items())
         elif isinstance(other, dict):
             return dict.__cmp__(self, other)
